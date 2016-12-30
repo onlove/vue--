@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <div id="searchBar">
+        Search <input type="text" v-model="searchQuery" />
+    </div>
+    <simple-grid :data-arr="list" :columns="gridColumns" :filter-key="searchQuery">
+    </simple-grid>
+</div>
+
+<template id="grid-template">
+    <table>
+        <thead>
+        <tr>
+            <th v-for="col in columns">
+                {{ col}}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(entry, index) in dataArr">
+                <td v-for="col in columns">
+                    {{entry[col]}}
+                </td>
+            </tr>
+        </tbody>
+        {{list}}
+    </table>
+</template>
+
+<script src="../vue.js"></script>
+<script>
+    Vue.component('simple-grid', {
+        template: '#grid-template',
+        props: ['dataArr', 'columns', 'filterKey']
+    });
+
+    var demo = new Vue({
+        el: '#app',
+        data: {
+            searchQuery: '',
+            gridColumns: ['name', 'age', 'sex'],
+            gridData: [{
+                name: 'Jack',
+                age: 30,
+                sex: 'Male'
+            }, {
+                name: 'Bill',
+                age: 26,
+                sex: 'Male'
+            }, {
+                name: 'Tracy',
+                age: 22,
+                sex: 'Female'
+            }, {
+                name: 'Chris',
+                age: 36,
+                sex: 'Male'
+            }]
+        },
+        computed: {
+            list: function(){
+                var _this = this;
+                if(this.searchQuery){
+                    return this.gridData.filter(function(item, index){
+                        return item.name.toLowerCase().indexOf(_this.searchQuery.toLowerCase()) > -1
+                                || item.age.toString().indexOf(_this.searchQuery) > -1;
+                    });
+                }
+                return this.gridData;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <my-component :my-name="name" :my-age="age"></my-component>
+</div>
+<template id="myComponent">
+    <table>
+        <tr>
+            <th colspan="2">子组件数据</th>
+        </tr>
+        <tr>
+            <td>my name</td>
+            <td>{{myName}}</td>
+        </tr>
+        <tr>
+            <td>my age</td>
+            <td>{{myAge}}</td>
+        </tr>
+    </table>
+</template>
+<script src="../vue.js"></script>
+<script>
+    //Vue.js规定：在定义组件的选项时，data和el选项必须使用函数
+    //否则会报错
+    new Vue({
+        el: '#app',
+        data: {
+            name: 'keepfoll',
+            age: 28
+        },
+        components: {
+            'my-component': {
+                template: '#myComponent',
+                props: ['myName', 'myAge']
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮" v-on:click="add()">
+        <br/>
+        <ul>
+            <li v-for="(value, index) in arr">{{index}} : {{value}}</li>
+        </ul>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                arr: ['apple', 'banana', 'pear', 'orange']
+            },
+            methods: {
+                add: function(){
+                    this.arr.push('tomato')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

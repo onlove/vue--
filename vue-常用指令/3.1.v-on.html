@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="按钮" @click="show($event)" />
+</div>
+<script src="../vue.js"></script>
+<script>
+    //事件简写  v-on:  ===> @
+    //事件对象 $event
+    new Vue({
+        el: '#box',
+        methods: {
+            show: function(e){
+                console.log(e)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .router-link-active{
+            color:red
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <router-link to="/foo">Go to foo</router-link>
+        <router-link to="/bar">Go to bar</router-link>
+    </p>
+    <router-view></router-view>
+</div>
+
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+<script>
+    // 1. 定义（路由）组件。
+    // 可以从其他文件 import 进来
+    const Foo = { template: '<div>Foo</div>'};
+    const Bar = { template: '<div>Bar</div>'};
+
+    // 2. 定义路由
+    // 每个路由应该映射一个组件。 其中"component" 可以是
+    // 通过 Vue.extend() 创建的组件构造器，
+    // 或者，只是一个组件配置对象。
+    // 我们晚点再讨论嵌套路由。
+    const routes = [
+        {path: '/foo', component: Foo},
+        {path: '/bar', component: Bar}
+    ];
+
+    // 3.创建router实例,然后传'routes'配置
+    //你还可以传别的参数，不过先这么简单用着
+    const router = new VueRouter({
+        routes   //相当于routes: routes
+    });
+
+
+    // 4.创建和挂载根实例
+    const app = new Vue({
+        router
+    }).$mount('#app')
+
+
+</script>
+</body>
+</html>

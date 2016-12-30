@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    {{message}}
+    {{b}}
+</div>
+<script src="../vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#box',
+        data: {
+            message: 'hello'
+        },
+        //计算属性
+        computed: {
+            /*
+            b: function(){ //当获取b的值就调用这个方法
+                //在获取的时候将原有的message也进行了改变
+                // this 指向当前的实例，也就是vm
+                this.message = 'hello vue';
+                // 通过 return 返回
+                return 1000
+            },
+            //属性是由get和set组成
+            */
+            b: {
+                get: function(){
+                    return 2000
+                },
+                set: function(val){
+                    //当我们给b赋值，默认调set方法
+                    //val设置的值
+                     this.message = val;
+                }
+            }
+
+        }
+    })
+
+    vm.b = 100;
+</script>
+</body>
+</html>
