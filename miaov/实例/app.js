@@ -1,17 +1,18 @@
 /**
  * Created by DT274 on 2017/4/1.
  */
-var list = [
-    {
-        title: "吃饭睡觉打豆豆1",
-        isChecked: false
+var store = {
+    save(key, value) {
+        localStorage.setItem(key, JSON.stringify(value))
     },
-    {
-        title: "吃饭睡觉打豆豆2",
-        isChecked: true
+    fetch(key) {
+        return JSON.parse(localStorage.getItem(key)) || [];
     }
-];
+};
 
+
+
+var list = store.fetch('todos');
 
 new Vue({
     el: ".main",
@@ -26,6 +27,20 @@ new Vue({
             return this.list.filter(function(item){
                 return !item.isChecked
             }).length
+        }
+    },
+    watch: {
+        /* 浅监控 */
+        //list() { //监控list属性,当属性发生变化时，执行函数
+        //    store.save('todos', this.list)
+        //}
+
+        /* 深监控 */
+        list: {
+            handler: function () {
+                store.save('todos', this.list)
+            },
+            deep: true
         }
     },
     methods: {
