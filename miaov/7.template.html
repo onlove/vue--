@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 模板 -->
+<div id="app">
+    <span>dddddddddddddd</span>
+</div>
+
+<script src="../vue.2.0.js"></script>
+<script>
+
+    let obj = {
+        abc: 2
+    };
+
+    var str = `<div>hello word <span>{{abc}}</span></div>`;
+
+    var vm = new Vue({
+        el: "#app",
+        data: obj,
+        template: str
+    });
+
+    /*
+    *
+    * template: 只能有一个根元素
+    * */
+
+</script>
+
+<script type="x-template" id="template">
+
+</script>
+</body>
+</html>

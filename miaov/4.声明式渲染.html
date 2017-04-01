@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 模板 -->
+<div id="app">
+    <span @click="clickHandle">{{msg}}</span>
+</div>
+
+<script src="../vue.2.0.js"></script>
+<script>
+    let arr = [1, 2, 4, 5];
+
+    /*  命令式 */
+    let newArr = [];
+    for(var i = 0; i < arr.length; i++) {
+        newArr.push(arr[i] * 2)
+    }
+    console.log(newArr)
+
+
+    /* 声明式 */
+    var newArr1 = arr.map(function(item) {
+        return item * 2
+    });
+    console.log(newArr1)
+
+
+    /*
+    * 声明式：
+    *   只需要声明在哪里（where）做什么（what）,而无需关心如何实现(how)
+    * 命令式：
+    *   需要以具体的代码表达在哪里(where)做什么（what）,如何实现（how）
+    * */
+
+
+</script>
+</body>
+</html>

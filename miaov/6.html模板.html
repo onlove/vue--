@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 模板 -->
+<div id="app">
+    <div v-html="html"></div>
+    <span :custom="abc">{{ 1 + 2 }}</span>
+</div>
+
+<script src="../vue.2.0.js"></script>
+<script>
+
+    let obj = {
+        html: '<div>hello word</div>',
+        abc: 1
+    };
+
+    var vm = new Vue({
+        el: "#app",
+        data: obj
+    });
+
+</script>
+</body>
+</html>

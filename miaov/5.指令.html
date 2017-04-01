@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 模板 -->
+<div id="app">
+    <span :cutomId="id">{{msg}}</span>
+</div>
+
+<script src="../vue.2.0.js"></script>
+<script>
+
+    let obj = {
+        msg: "hello vue",
+        id: "123"
+    }
+
+    var vm = new Vue({
+        el: "#app",
+        data: obj
+    })
+
+    /*
+    * 内置指令
+    *   v-bind        动态绑定数据，可简写为":"
+    *   v-on          绑定事件监听器，可简写为"@"
+    *   v-text        更新数据，会覆盖已有结构
+    *   v-html        可以解析数据中的HTML结构
+    *   v-show        根据值得真假，切换元素的display属性
+    *   v-if          根据值得真假，切换元素会被销毁、重建
+    *   v-else-if     多条件判断，为真假渲染
+    *   v-else        条件都不符合渲染
+    *   v-for         基于源数据多冷渲染元素或模板块
+    *   v-model       在表单控件元素上创建双向数据绑定
+    *   v-pre         跳过元素和子元素的编译过程
+    *   v-once        只渲染一次，随后数据更新不重新渲染
+    *   v-cloak       隐藏未编译的Mustache语法\ css中设置[v-cloak]{display: none}
+    * */
+
+</script>
+</body>
+</html>

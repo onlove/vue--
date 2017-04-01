@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 模板 -->
+<div id="app">
+    <span @click="clickHandle">{{msg}}</span>
+</div>
+
+<script src="../vue.2.0.js"></script>
+<script>
+    let obj = {
+        msg: "hello vue"
+    };
+
+    //声明式渲染
+    var vm = new Vue({
+        el: '#app',
+        data: obj,
+        methods: {
+            clickHandle() {
+                console.log(1)
+            }
+        }
+    });
+
+
+    /*
+    * 1.vue代理数据：
+    *   每个vue实例都会代理data对象里面所有的属性。这些被代理的属性是响应的，新添加的属性不具备响应功能，改变后不会更新视图
+    * 2.vue实例自身属性和方法
+    *   暴露自身的属性和方法，以$开头,例如[$el, $data]
+    * */
+</script>
+</body>
+</html>
