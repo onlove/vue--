@@ -13,20 +13,40 @@ var store = {
 
 
 var list = store.fetch('todos');
+var filter = {
+    all(list){
+        return list
+    },
+    finished(list){
+        return list.filter(function(item){
+            return item.isChecked
+        })
+    },
+    unfinished(list){
+        return list.filter(function(item){
+            return !item.isChecked
+        })
+    }
+}
 
-new Vue({
+var vm = new Vue({
     el: ".main",
     data: {
         list: list,
         todo: '',
         edtorTodos: '',  //记录编辑的数据
-        beforeTitle: ''  //正在编辑的title
+        beforeTitle: '',  //正在编辑的title
+        visibility: "all"  //通过这个属性值的变化对数据进行筛选
     },
     computed: {
         noCheckLength(){
             return this.list.filter(function(item){
                 return !item.isChecked
             }).length
+        },
+        filteredList(){
+            //分三种情况all、unfinished、finished
+            return filter[this.visibility] ? filter[this.visibility](list) : list
         }
     },
     watch: {
@@ -109,3 +129,18 @@ new Vue({
     *
     * */
 });
+
+function watchHashChange () {
+    var hash = window.location.hash.slice(1);
+    vm.visibility = hash;
+}
+
+watchHashChange();
+
+window.addEventListener("hashchange", watchHashChange);
+
+
+
+
+
+

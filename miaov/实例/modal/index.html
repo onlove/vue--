@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p,h4{
+            margin:0;
+        }
+        .modal{
+            width: 500px;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.2);
+            border-radius: 6px;
+            box-shadow: 0 3px 9px rgba(0,0,0,.5);
+
+        }
+        .modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .modal-content div {
+            padding: 20px;
+        }
+        .modal-footer {
+            padding: 15px;
+            text-align: right;
+            border-top: 1px solid #e5e5e5;
+        }
+        .btn {
+            padding: 5px 15px;
+            border: none;
+            outline: none;
+        }
+        .blue {
+            color: #fff;
+            background-color: #39f;
+            border-color: #39f;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <m-modal modal-title="提醒" @on-ok="ok" @on-cancel="cancel"></m-modal>
+    <m-modal>
+        <ul slot="modal-content">
+            <li v-for="item of list">{{item}}</li>
+        </ul>
+        <div slot="modal-footer">
+            <span class="btn">确定</span>
+            <span class="btn">重置</span>
+            <span class="btn">返回</span>
+        </div>
+    </m-modal>
+    <m-modal modal-title="提醒" @on-cancel="cancel"></m-modal>
+</div>
+<script src="../../../vue.2.0.js"></script>
+<script>
+    /*
+    * 封装组件
+    *   每个组件会提供一些标准且简单的应用接口，允许使用者设置和调整参数和属性
+    *   可以将不同来源的多个组件有机地结合在一起，快速构成一个符合实际需要的复杂（大型）应用程序
+    *
+    *   组件的主要特点
+    *       重用性：    能够公用和通用
+    *       可定制性：  可设置参数和属性
+    *       高内聚性：  功能完整
+    *       互操作笥：  多组件苏同工作
+    *   Vue组件的API来自三个部分
+    *       props参数：         传递数据给组件
+    *       slot定制模板        外部模板混合子组件模板
+    *       event自定义事件     监控子组件交互状态
+    * */
+
+
+
+    /*
+    * 设置的props：
+    *       modalTitle 提醒信息，默认为“”
+    *
+    * 定制模板
+    *       slot为modal-content  定制提醒信息模板
+    *       slot为modal-footer   定制底部模板
+    *
+    * 监控子组件状态变化
+    *       事件名on-ok        点击确定触发
+    *       事件名on-cancel    点击取消触发
+    * */
+
+    Vue.component('m-modal', {
+        props: {
+            modalTitle: {
+                type: String,
+                default: '这是一个模态框'
+            }
+        },
+        template: `
+            <div class="modal">
+                <div class="modal-header">
+                    <h4>{{modalTitle}}</h4>
+                </div>
+                <div class="modal-content">
+                    <div>
+                        <slot name="modal-content">在这里添加内容</slot>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <slot name="modal-footer">
+                        <input type="button" class="btn blue" value="确定" @click="okHandle"/>
+                        <input type="button" class="btn" value="取消" @click="cancleHandle"/>
+                    </slot>
+                </div>
+            </div>
+        `,
+        methods: {
+            okHandle() {
+                this.$emit('on-ok');
+            },
+            cancleHandle(){
+                this.$emit('on-cancel');
+            }
+        }
+    })
+
+    var list = [...'一个人的天堂'];
+
+    new Vue({
+        el: "#app",
+        data: {
+            list: list
+        },
+        methods: {
+            ok: function(){
+                alert('确定了')
+            },
+            cancel(){
+                alert('取消了')
+            }
+        }
+    })
+</script>
+</body>
+</html>

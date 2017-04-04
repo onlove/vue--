@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <div style="float:left">
+        <h2>自定义下拉框1</h2>
+        <custom-select btn-value="查询"></custom-select>
+    </div>
+    <div style="float:left">
+        <h2>自定义下拉框2</h2>
+        <custom-select btn-value="搜索"></custom-select>
+    </div>
+
+</div>
+<script src="../vue.2.0.js"></script>
+<script>
+    /*
+     * 组件中的data必须是个函数
+     *   每个组件都是相互独立的，如果它们共用一个对象，在更改一个组件数据的时候，会影响
+     *   其他组件，如果是函数的话，每个组件都有自己独立的数据，相互之间不会影响
+     * */
+
+    //注册组件
+    Vue.component('custom-select', {
+        data: function (){
+            return {
+                selectShow: false
+            };
+        },
+        props: ["btnValue"],
+        template: `<section class="warp">
+                        <div class="searchIpt clearFix">
+                            <div class="clearFix">
+                                 <input type="text" class="keyWord" value="" @click="selectShow = !selectShow"/>
+                                 <input type="button" :value="btnValue">
+                                 <span></span>
+                            </div>
+                            <ul class="list" v-show="selectShow">
+                                <li>html+css</li>
+                                <li>html5+css3</li>
+                                <li>javascript</li>
+                                <li>angular</li>
+                                <li>react</li>
+                                <li>vue</li>
+                                <li>jquery</li>
+                                <li>nodejs</li>
+                            </ul>
+                         </div>
+                    </section>`
+    });
+
+    new Vue({
+        el: '#app'
+    })
+
+
+
+</script>
+</body>
+</html>

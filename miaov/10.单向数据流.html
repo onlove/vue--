@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <h3>父组件使用了count</h3>
+    <p>{{count}}</p>
+    <custom-component :count="count" @incretment-click="countHandle"></custom-component>
+</div>
+<script src="../vue.2.0.js"></script>
+<script>
+    /*
+    * 单向数据流
+    *   数据从父组件流向（传递）给子组件，只能单向绑定
+    *   在子组件内部不应该修改父组件传递过来的数据
+    *
+    *   改变prop的情况
+    *       1.作为data中局部数据的初始值使用
+    *       2.作为子组件中的computed树属性
+    *
+    * */
+    Vue.component('custom-component', {
+        props: ['count'],
+        data() {
+          return {
+              incrementCount: this.count
+          }
+        },
+        computed: {
+            incrementCount2() {
+                return this.incrementCount;
+            }
+        },
+        template: `
+           <div>
+                <h2>我是一个自定义组件</h2>
+                <input type="button" value="改变count的值" @click="changeCount">
+                {{incrementCount2}}
+           </div>
+        `,
+        methods: {
+            changeCount() {
+                this.incrementCount ++;
+                this.$emit('incretment-click')
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            count: 0
+        },
+        methods: {
+            countHandle() {
+                this.count++;
+                console.log("子组件点击了")
+            }
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <div style="float:left">
+        <h2>自定义下拉框1</h2>
+        <custom-select btn-value="查询"></custom-select>
+    </div>
+    <div style="float:left">
+        <h2>自定义下拉框2</h2>
+        <custom-select btn-value="搜索"></custom-select>
+    </div>
+
+</div>
+<script src="../vue.2.0.js"></script>
+<script>
+    /*
+    * 全局注册
+    *   可以在任何地方注册，使用之前先注册
+    *   语法：使用Vue.component（组件名，选项对象）
+    *   组件名命名约定
+    *       驼峰（camelCase）,烤串（kebab-case）
+    *   在html中使用组件:
+    *       使用灯烤串（kebab-case）命名法
+    *   例如注册：Vue.component('my-component', {})
+    *       使用:<my-component></my-component>
+    * */
+
+    /*
+    * 局部注册
+    *   在组件实例中通过选项对象注册，只在所注册的作用域使用
+    *   {
+    *       components: {
+    *           组件名：选项对象
+    *       }
+    *   }
+    *
+    * */
+
+    //注册组件
+    Vue.component('custom-select', {
+        props: ["btnValue"],
+        template: `<section class="warp">
+                        <div class="searchIpt clearFix">
+                            <div class="clearFix">
+                                 <input type="text" class="keyWord" value="" @click="selectShow = !selectShow"/>
+                                 <input type="button" :value="btnValue">
+                                 <span></span>
+                            </div>
+                            <ul class="list">
+                                <li>html+css</li>
+                                <li>html5+css3</li>
+                                <li>javascript</li>
+                                <li>angular</li>
+                                <li>react</li>
+                                <li>vue</li>
+                                <li>jquery</li>
+                                <li>nodejs</li>
+                            </ul>
+                         </div>
+                    </section>`
+    })
+
+
+    new Vue({
+        el: '#app'
+    })
+
+
+
+</script>
+</body>
+</html>

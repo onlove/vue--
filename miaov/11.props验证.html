@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <h3>父组件使用了count</h3>
+    <p>{{count}}</p>
+    <custom-component :count="count" @incretment-click="countHandle"></custom-component>
+</div>
+<script src="../vue.2.0.js"></script>
+<script>
+    /*
+    * Props验证
+    *  组件可以为props指定验证要求，如果未指定验证要求，Vue会发出警告
+    *  props: {
+    *       propA: {type: Number}           //指定类型
+    *       propB: {type: [String, Number]} //多种类型
+    *       propC: {type: String, required: true}   //必传，且为字符串
+    *       propD: {type: Number, default: 100} //数字类型，默认值为100
+    *       propE: {type: Number, defalut: function(){ return 1000 }}
+    *       propF: {validator: function(value){ return value > 10 }}  //自定义验证规则
+    *  }
+    * */
+
+
+    //count保证count为Number
+    Vue.component('custom-component', {
+        props: {
+            count: {
+                //type: Number,
+                //type: [Number, String]
+                //default: 100
+                //required: true
+                validator(value) {
+                    return value > 10
+                }
+            }
+        },
+        data() {
+          return {
+              incrementCount: this.count
+          }
+        },
+        computed: {
+            incrementCount2() {
+                return this.incrementCount;
+            }
+        },
+        template: `
+           <div>
+                <h2>我是一个自定义组件</h2>
+                <input type="button" value="改变count的值" @click="changeCount">
+                {{incrementCount2}}
+           </div>
+        `,
+        methods: {
+            changeCount() {
+                this.incrementCount ++;
+                this.$emit('incretment-click')
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            count: 20
+        },
+        methods: {
+            countHandle() {
+                this.count++;
+                console.log("子组件点击了")
+            }
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

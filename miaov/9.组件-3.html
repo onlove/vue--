@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <div style="float:left">
+        <h2>自定义下拉框1</h2>
+        <table>
+            <tr is="custom-select" btn-value="查询"></tr>
+        </table>
+    </div>
+    <div style="float:left">
+        <h2>自定义下拉框2</h2>
+        <custom-select btn-value="搜索"></custom-select>
+    </div>
+
+</div>
+<script src="../vue.2.0.js"></script>
+<script>
+    /*
+    * 受限制的元素
+    *   DOM模板解析
+    *   vue是在浏览器解析和标准化HTML后才能获取模板的内容，所以有些元素限制了能被它包裹的元素
+    *   例如：ul中只能放li, select只能放option
+    *   某些元素中放入自定义元素，不符合W3C标准，最终会解析错误
+    *
+    *   变通的方式是使用特殊属性is来扩展HTML标签功能
+    *
+    * */
+
+    //注册组件
+    Vue.component('custom-select', {
+        data: function (){
+            return {
+                selectShow: false
+            };
+        },
+        props: ["btnValue"],
+        template: `<section class="warp">
+                        <div class="searchIpt clearFix">
+                            <div class="clearFix">
+                                 <input type="text" class="keyWord" value="" @click="selectShow = !selectShow"/>
+                                 <input type="button" :value="btnValue">
+                                 <span></span>
+                            </div>
+                            <ul class="list" v-show="selectShow">
+                                <li>html+css</li>
+                                <li>html5+css3</li>
+                                <li>javascript</li>
+                                <li>angular</li>
+                                <li>react</li>
+                                <li>vue</li>
+                                <li>jquery</li>
+                                <li>nodejs</li>
+                            </ul>
+                         </div>
+                    </section>`
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            list1: ["北京", "上海", "苏州"],
+            list2: ['17-04-03', '17-04-05', '17-04-06']
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

@@ -25,16 +25,16 @@
             {{noCheckLength}}
             个任务未完成</li>
         <li class="action">
-            <a class="active" href="#">所有任务</a>
-            <a href="#">未完成的任务</a>
-            <a href="#">完成的任务</a>
+            <a href="#all" :class="{active: visibility === 'all' || visibility !== 'unfinished' || visibility !== 'finished'}">所有任务</a>
+            <a href="#unfinished" :class="{active: visibility === 'unfinished' }">未完成的任务</a>
+            <a href="#finished" :class="{active: visibility === 'finished' }">完成的任务</a>
         </li>
     </ul>
     <h3 class="big-title">任务列表：</h3>
     <div class="tasks">
         <span class="no-task-tip" v-show="!list.length">还没有添加任何任务</span>
         <ul class="todo-list">
-            <li class="todo" v-for="item in list" :class="{completed: item.isChecked, editing: item === edtorTodos}">
+            <li class="todo" v-for="item in filteredList" :class="{completed: item.isChecked, editing: item === edtorTodos}">
                 <div class="view">
                     <input type="checkbox" class="toggle" v-model="item.isChecked">
                     <label @dblclick="edtorTodo(item)">{{item.title}}</label>
@@ -53,7 +53,7 @@
         </ul>
     </div>
 </div>
-<script src="../../vue.2.0.js"></script>
+<script src="../../../vue.2.0.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
