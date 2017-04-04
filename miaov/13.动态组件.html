@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="切换到第一个组件" @click="tabComponent(1)">
+    <input type="button" value="切换到第二个组件" @click="tabComponent(2)">
+    <input type="button" value="切换到第三个组件" @click="tabComponent(3)">
+    <keep-alive>
+        <component :is="current"></component>
+    </keep-alive>
+</div>
+<script src="../vue.2.0.js"></script>
+<script>
+    /*
+    * 动态组件
+    *   多个组件可以使用同一个挂载点，动态地在它们之间切换
+    *   使用保留的<component>元素，使用is特性进行动态绑定
+    *
+    *   可以使用keep-alive把切出去的组件保留在内存中，这样可以
+    *   保留它们的状态避免重新渲染
+    *
+    *
+    * */
+    var custom1 = Vue.component('custom1', {
+        template: '<div @click="changeDivBgColor">我是第1组件</div>',
+        methods: {
+            changeDivBgColor(ev){
+                ev.target.style.background = 'red';
+            }
+        }
+    });
+    var custom2 = Vue.component('custom2', {
+        template: '<div>我是第2组件</div>'
+    });
+    var custom3 = Vue.component('custom3', {
+        template: '<div>我是第3组件</div>'
+    });
+
+    new Vue({
+        el: "#app",
+        data: {
+            current: custom1
+        },
+        methods: {
+            tabComponent(index){
+                if(index === 1) {
+                    this.current = custom1
+                }else if(index === 2) {
+                    this.current = custom2
+                }else if(index === 3) {
+                    this.current = custom3
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
