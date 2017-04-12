@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="example" @click="up">
+    <div id="demo" v-demo:hello.a.b="msg"></div>
+</div>
+<script src="../vue.js"></script>
+<script>
+    Vue.directive('demo', {
+        bind: function (el, binding, vnode) {
+            console.log(el);
+            console.log(binding);
+            console.log(vnode)
+            var s = JSON.stringify
+            el.innerHTML =
+                    'name: '       + s(binding.name) + '<br>' +
+                    'value: '      + s(binding.value) + '<br>' +
+                    'expression: ' + s(binding.expression) + '<br>' +
+                    'argument: '   + s(binding.arg) + '<br>' +
+                    'modifiers: '  + s(binding.modifiers) + '<br>' +
+                    'vnode keys: ' + Object.keys(vnode).join(', ')
+        }
+    })
+
+    new Vue({
+        el: '#example',
+        data: {
+            msg: 'hello'
+        },
+        methods: {
+            up: function(){
+                console.log('click')
+            }
+        }
+    })
+</script>
+</body>
+</html>

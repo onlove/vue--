@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo" v-demo = "{color: 'red', text: 'hello'}">
+
+</div>
+<script src="../vue.js"></script>
+<script>
+    Vue.directive('demo', function (el, binding) {
+        el.style.width = "200px";
+        el.style.height = '50px';
+        el.style.backgroundColor = binding.value.color;
+        el.innerHTML = binding.value.text;
+    })
+
+    new Vue({
+        el: "#demo"
+    })
+</script>
+</body>
+</html>

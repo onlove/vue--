@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{a | date}}
+    </div>
+
+    <script src="../vue.1.0.js"></script>
+    <script>
+            Vue.filter('date', function (input) {
+                var oDate = new Date(input);
+                return oDate.getFullYear() + '-' + (oDate.getMonth() + 1) + '-' + oDate.getDate() + ' ' +oDate.getHours()
+                + ':' + oDate.getMinutes() + ':' + oDate.getSeconds()
+            });
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    a: Date.now()
+                },
+                methods: {
+                }
+            })
+    </script>
+</body>
+</html>

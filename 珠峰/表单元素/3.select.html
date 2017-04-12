@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <select v-model="selects" multiple>
+            <option value="你好">你好</option>
+            <option value="我好">我好</option>
+            <option value="大家好">大家好</option>
+        </select>
+        {{selects}}
+        <!---->
+        <select>
+            <option :value="check.age" v-for="(check, index) in checks">
+                {{check.name}}
+            </option>
+        </select>
+    </div>
+</body>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            selects: [],
+            checks: [
+                {name: 'zzz1', age: '4'},
+                {name: 'zzz2', age: '5'},
+                {name: 'zzz3', age: '6'}
+            ]
+        }
+    })
+</script>
+</html>

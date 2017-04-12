@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div v-for="(value, key, index) in message">{{index}}:{{key}}:{{value}}</div>
+    <br/>
+    <br/>
+    <div v-for="(value, index) in arr">
+        父亲的索引:{{index}}:{{value.name}}
+        <div v-for="(t, tindex) in value.type">
+            <!-- 在儿子里面拿到父索引 -->
+            儿子的索引:{{index}}{{tindex}}:{{t}}
+        </div>
+    </div>
+    <br/>
+    <div v-for="item in arr2" track-by="index">{{item}}</div>
+</div>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: {
+                name: 'vue',
+                age: 7,
+                hobby: ['js', 'css', 'html']
+            },
+            arr: [
+                {name: 'sumsang', age: 7, type:["蓝色", '白色']},
+                {name: 'apple', age: 9, type:["黑色", '玫瑰金', '白色', '银色']},
+                {name: 'huawei', age: 17, type:["灰色"]}
+            ],
+
+            arr2: ['苹果', '苹果', '苹果', '苹果']
+        }
+    })
+</script>
+</body>
+</html>

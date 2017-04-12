@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <p v-if="greeting">Hello</p>
+    <template v-else="greeting">
+        <h1>{{title}}</h1>
+        <p>Paragraph1</p>
+        <p>Paragraph2</p>
+    </template>
+
+</div>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            greeting: false,
+            title: '不一样的'
+        }
+    })
+
+    //template是vue设置一个标签
+    //v-if 和v-else 是一对
+    //v-show不支持template 也不支付v-else  ---> vue 2.0
+</script>
+</body>
+</html>

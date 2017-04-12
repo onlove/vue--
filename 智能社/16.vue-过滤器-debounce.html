@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keyup="show | debounce 2000">
+    </div>
+
+    <script src="../vue.1.0.js"></script>
+    <script>
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    myData: [],
+                },
+                methods: {
+                    show() {
+                        alert(1)
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

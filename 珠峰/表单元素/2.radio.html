@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" id="app">
+    <input type="radio" v-model="radio" value='男'>
+    <input type="radio" v-model="radio" value="女">
+    {{radio}}
+</form>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            radio: ''
+        }
+    })
+</script>
+</body>
+</html>

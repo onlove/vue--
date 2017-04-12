@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo" v-demo.literal="foo bar baz"></div>
+<script src="../vue.1.0.js"></script>
+<script>
+    Vue.directive('demo', function(el, binding){
+        console.log(el)
+    })
+
+    new Vue({
+        el: "#demo"
+    })
+</script>
+</body>
+</html>

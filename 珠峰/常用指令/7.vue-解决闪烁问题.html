@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <!-- 用作绑定动态数据，防止闪烁 -->
+    <div v-text="message"></div>
+    <div v-text="age"></div>
+    <!-- v-cloak防止闪烁，先将元素隐藏，当获取数据事将元素显示 -->
+    <div v-cloak>
+        {{message}} {{age}}
+    </div>
+</div>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {
+            message: 'hello',
+            age: 7
+        }
+    })
+</script>
+</body>
+</html>

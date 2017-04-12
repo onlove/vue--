@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <br/>
+    {{msg2}}
+    <br/>
+    {{msg3}}
+    <br/>
+    {{msg4}}
+    <br/>
+    {{msg5}}
+</div>
+<script src="../vue.1.0.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'#app',
+        data: {
+            msg: "hello world",
+            msg2: 12,
+            msg3: true,
+            msg4: ['apple', 'banana', 'orange', 'pear'],
+            msg5: {
+                one: '1'
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

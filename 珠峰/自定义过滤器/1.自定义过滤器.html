@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{'welcome' | capitalize(2)}}
+    <br />
+    <!-- 读取过滤 -->
+    <!--<input type="text" v-model="message | my">{{message}}-->
+</div>
+
+<script src="../vue.js"></script>
+<script>
+
+
+    Vue.filter('capitalize', function(value, begin){
+        return value.slice(0, begin).toUpperCase() + value.slice(begin)
+    });
+    Vue.filter('my', {
+        write(val){
+            return val + '11'
+        }
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        }
+    });
+
+</script>
+</body>
+</html>

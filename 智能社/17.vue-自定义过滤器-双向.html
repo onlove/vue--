@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg | filterHtml">
+        <div v-html="msg"></div>
+    </div>
+
+    <script src="../vue.1.0.js"></script>
+    <script>
+            Vue.filter('filterHtml', {
+                read: function (input){   //model-view
+                    return input.replace(/<[^<]+>/g, '');
+                },
+                write: function (value) {   //view - model
+                    console.log(value);
+                    return value;
+                }
+            });
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: '<strong>welcome</strong>'
+                },
+                methods: {
+                }
+            })
+    </script>
+</body>
+</html>

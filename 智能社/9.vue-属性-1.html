@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <img :src="url" alt="">
+    </div>
+
+    <script src="../vue.1.0.js"></script>
+    <script>
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    url: 'https://www.baidu.com/img/bd_logo1.png'
+                },
+                methods: {
+                    show: function () {
+                        alert(1);
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

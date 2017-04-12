@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <strong :style="[c, b]">在。。。</strong>
+    </div>
+
+    <script src="../vue.1.0.js"></script>
+    <script>
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    c: {color: 'red'},
+                    b: {backgroundColor: 'blue'}
+                },
+                methods: {
+                }
+            })
+    </script>
+</body>
+</html>

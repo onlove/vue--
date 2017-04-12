@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="one" debounce="2000">{{one}}
+    </div>
+    debounce 延迟刷新
+</body>
+<script src="../vue.1.0.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            one: ''
+        }
+    })
+</script>
+</html>

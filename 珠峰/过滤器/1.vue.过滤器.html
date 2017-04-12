@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    {{'welcome' | capitalize}}
+    {{'welcome' | uppercase}}
+    {{'WELCOME' | lowercase}}
+    {{100.30 | currency '英镑' 3}}
+    {{1 | pluralize 'item'}}
+    {{2 | pluralize 'item'}}
+    <br />
+
+    <input type="text" v-model="searchText" />
+    <ul>
+        <li v-for="user in users | filterBy searchText">
+            {{user.name}}
+        </li>
+    </ul>
+    <br/>
+    <button @click="count += 2">显示数据</button>
+    <div v-for="user in users | limitBy 2 count">{{user.name}}</div>
+    <br/>
+    <br/>
+    <button @click="order *= -1">排序</button>
+    <div v-for="user in users | orderBy 'name' order">{{user.name}}</div>
+</div>
+
+
+
+
+
+<script src="../vue.1.0.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            order: 1,
+            searchText: '',
+            users: [
+                {name: '快车', tag: '1'},
+                {name: '出租车', tag: '2'},
+                {name: '顺风车', tag: '3'},
+                {name: '专车', tag: '4'}
+            ],
+            count: 0
+        }
+    });
+</script>
+</body>
+</html>

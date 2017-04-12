@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <input type="text" @keyup.enter="show()">
+    <input type="text" @keyup.up="show()">
+    <input type="text" @keyup.down="show()">
+    <input type="text" @keyup.left="show()">
+    <input type="text" @keyup.right="show()">
+</div>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        methods: {
+            show: function(){
+                alert('你按了回车键')
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="animate.css">
+</head>
+<body>
+
+<div id="app">
+    <button @click="show = !show">
+        Toggle
+    </button>
+    <transition
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:after-enter="afterEnter"
+            v-on:enter-cancelled="enterCancelled"
+            v-on:before-leave="beforeLeave"
+            v-on:leave="leave"
+            v-on:after-leave="afterLeave"
+            v-on:leave-cancelled="leaveCancelled"
+            v-bind:css="false"
+    >
+        <p v-if="show">
+            Demo
+        </p>
+    </transition>
+</div>
+<script src="../vue.js"></script>
+<script src="velocity.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            show: false
+        },
+        methods: {
+            // --------
+            // 进入中
+            // --------
+            beforeEnter: function(el){
+                console.log('beforeEnter');
+                el.style.opacity = 0
+            },
+            enter: function(el, done){
+                console.log('enter');
+                Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+                Velocity(el, { fontSize: '1em' }, { complete: done })
+            },
+            afterEnter: function(el){
+                console.log('afterEnter')
+            },
+            enterCancelled: function(el){
+                console.log('enterCancelled')
+            },
+            // --------
+            // 离开时
+            // --------
+            beforeLeave: function (el) {
+                // ...
+                console.log('beforeLeave')
+            },
+            // 此回调函数是可选项的设置
+            // 与 CSS 结合时使用
+            leave: function (el, done) {
+                // ...
+                console.log('leave');
+                Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+                Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+                Velocity(el, {
+                    rotateZ: '45deg',
+                    translateY: '30px',
+                    translateX: '30px',
+                    opacity: 0
+                }, { complete: done })
+            },
+            afterLeave: function (el) {
+                // ...
+                console.log('afterLeave')
+            },
+            // leaveCancelled 只用于 v-show 中
+            leaveCancelled: function (el) {
+                // ...
+                console.log('leaveCancelled')
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{a}}
+    </div>
+
+    <script src="../vue.1.0.js"></script>
+    <script>
+        window.onload = function () {
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    a: 111,
+                    b: 2
+                },
+                methods: {
+                    show(){
+                        alert(1)
+                    }
+                }
+            });
+
+
+            vm.$watch('a', function () {
+                alert('发生变化了')
+            })
+
+            document.onclick = function () {
+                vm.a = 1;
+            }
+        };
+
+    </script>
+</body>
+</html>

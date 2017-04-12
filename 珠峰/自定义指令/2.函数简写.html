@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo" v-color-swatch="bg" style="width: 200px;height: 50px">
+    <input type="text" v-model="bg"/>
+</div>
+
+<script src="../vue.js"></script>
+<script>
+    Vue.directive('color-swatch', function(el, binding){
+        el.style.backgroundColor = binding.value;
+    });
+
+    new Vue({
+        el: '#demo',
+        data: {
+            bg: 'red'
+        }
+    })
+</script>
+</body>
+</html>
