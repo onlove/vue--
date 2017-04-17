@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <my-aaa></my-aaa>
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script>
+        var Aaa = Vue.extend({
+            template: '<h3>{{msg}}</h3>',
+            data() {
+                return {
+                    msg: '标题3'
+                }
+            }
+        });
+
+        vm = new Vue({
+            el: '#app',
+            data: {
+                bSign: true
+            },
+            components: {  //局部组件
+                'my-aaa': Aaa
+            }
+        });
+
+    </script>
+</body>
+</html>

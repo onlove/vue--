@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="更新数据" @click="update"/>
+    {{msg}}
+</div>
+
+<script src="../../vue.2.0.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            msg: 'welcome vue2.0'
+        },
+        methods: {
+            update() {
+                this.msg = '你好，大家好，才是真的好'
+            }
+        },
+        beforeCreate() {
+            console.log("组件实例刚刚被创建")
+        },
+        created() {
+            console.log("实例已经创建完成")
+        },
+        beforeMount() {
+            console.log("模板编译之前")
+        },
+        mounted() {
+            console.log("模板编译完成")
+        },
+        beforeUpdate() {
+            console.log("组件更新之前")
+        },
+        updated() {
+            console.log("组件更新完毕")
+        }
+    })
+</script>
+</body>
+</html>

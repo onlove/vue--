@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <span v-red>{{msg}}</span><br/>
+        <span a-red>1111</span>
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script>
+            Vue.directive('red', function () {
+                this.el.style.color = 'red';
+            });
+
+            Vue.directive('a-red', function () {
+                this.el.style.color = 'red';
+            });
+
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'a'
+                },
+                methods: {
+                }
+            })
+    </script>
+</body>
+</html>

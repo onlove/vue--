@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="按钮" @click="get">
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script src="../../vue-resource.js"></script>
+    <script>
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'abc'
+                },
+                methods: {
+                    get: function (){
+                        this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                            params:{
+                                wd: 'a'
+                            },
+                            jsonp: "cb"
+                        }).then(function(res){
+                            console.log(res.data.s)
+                        })
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

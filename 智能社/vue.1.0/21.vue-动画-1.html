@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="../../animate.css">
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="按钮" @click="toggle">
+        <div id="div1" class="animated" v-show="bSign" transition="bounce"></div>
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                bSign: true
+            },
+            methods: {
+                toggle(){
+                    this.bSign = !this.bSign;
+                }
+            },
+            transitions : {
+                bounce: {
+                    enterClass: 'zoomInLeft',
+                    leaveClass: 'zoomOutRight'
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

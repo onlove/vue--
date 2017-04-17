@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="aaa组件" @click="a = 'aaa'">
+        <input type="button" value="bbb组件" @click="a = 'bbb'">
+        <component :is="a"></component>
+    </div>
+    <script src="../../vue.1.0.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                a: 'aaa'
+            },
+            components: {
+                'aaa': {
+                    template: '<h2>我是aaa组件</h2>'
+                },
+                'bbb': {
+                    template: '<h2>我是bbb组件</h2>'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

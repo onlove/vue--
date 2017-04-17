@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <aaa></aaa>
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script>
+
+        Vue.component('aaa', {
+            template: '<strong>hello welcome</strong>'
+        });
+
+        vm = new Vue({
+            el: '#app'
+        });
+
+    </script>
+</body>
+</html>

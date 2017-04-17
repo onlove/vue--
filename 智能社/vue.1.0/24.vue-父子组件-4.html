@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <aaa></aaa>
+    </div>
+    <template id="aaa">
+        <h1>我是父级 --> {{msg}}</h1>
+        <bbb @child-msg="get"></bbb>
+    </template>
+    <template id="bbb">
+        <h3>这是个子组件</h3>
+        <input type="button" value="发送" @click="send"/>
+    </template>
+    <script src="../../vue.1.0.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                a: 'aaa'
+            },
+            components: {
+                'aaa': {
+                    data() {
+                        return  {
+                            msg: '我是父组件数据'
+                        }
+                    },
+                    template: '#aaa',
+                    methods: {
+                        get(msg){
+                            this.msg = msg
+                        }
+                    },
+                    components: {
+                        'bbb': {
+                            data() {
+                                return {
+                                    a: '我是子组件数据'
+                                }
+                            },
+                            template: '#bbb',
+                            methods: {
+                                send() {
+                                    this.$emit('child-msg', this.a)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

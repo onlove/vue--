@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="添加" @click="add"/>
+    <ul>
+        <li v-for="(val, index) in list" :key="index">
+            {{val}} {{index}}
+        </li>
+    </ul>
+</div>
+
+<script src="../../vue.2.0.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            list: ['width', 'height']
+        },
+        methods: {
+            add() {
+                this.list.push('background')
+            }
+        }
+    })
+</script>
+</body>
+</html>

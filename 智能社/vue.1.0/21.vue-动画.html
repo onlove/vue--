@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+        .fade-transition {
+            transition: 1s all ease;
+        }
+        .fade-enter {
+            opacity: 0;
+        }
+        .fade-leave{
+            opacity: 0;
+            transform: translateX(200px);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="按钮" @click="toggle">
+        <div id="div1" v-show="bSign" transition="bounce"></div>
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                bSign: true
+            },
+            methods: {
+                toggle(){
+                    this.bSign = !this.bSign;
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

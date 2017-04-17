@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <aaa></aaa>
+    </div>
+    <template id="aaa">
+        <strong>{{msg}}</strong>
+        <ul>
+            <li v-for="val in arr">{{val}}</li>
+        </ul>
+    </template>
+    <script src="../../vue.1.0.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#app',
+            components: {
+                'aaa': {
+                    template: '#aaa',
+                    data() {
+                        return {
+                            msg: 'ine',
+                            arr: ['banana', 'apple']
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{'welcome' | uppercase}}
+        <br/>
+        {{'WELCOME' | lowercase}}
+        <br/>
+        {{'WELCOME' | lowercase | capitalize}}
+        <br/>
+        {{12 | currency}}
+        <br/>
+        {{12 | currency '￥'}}
+    </div>
+
+    <script src="../../vue.1.0.js"></script>
+    <script>
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'abc'
+                },
+                methods: {
+                }
+            })
+    </script>
+</body>
+</html>

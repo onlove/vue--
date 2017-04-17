@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="按钮" @click="show($event)">
+    </div>
+
+<script src="../../vue.1.0.js"></script>
+<script>
+        vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                show: function (ev) {
+                    alert(ev.clientX)
+                }
+            }
+        })
+</script>
+</body>
+</html>
