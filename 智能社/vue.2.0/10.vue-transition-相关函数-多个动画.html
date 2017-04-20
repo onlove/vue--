@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../animate.css">
+    <style>
+        p{
+            margin: 0 auto 10px;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="show"/>
+    <transition-group enter-active-class="zoomInLeft" leave-active-class="zoomOutRight">
+         <p class="animated" v-for="(val, index) in lists" :key="index">{{val}}</p>
+    </transition-group>
+</div>
+<script src="../../vue.2.0.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            show: '',
+            list: ['apple', 'banana', 'orange', 'pear']
+        },
+        computed: {
+            lists: function () {
+                var arr = [];
+                this.list.forEach(function(val) {
+                    if(val.indexOf(this.show) != -1) {
+                        arr.push(val)
+                    }
+                }.bind(this));
+                return arr;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .router-link-active{
+            font-size: 20px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div>
+        <router-link to="/home">主页</router-link>
+        <router-link to="/user">新闻</router-link>
+    </div>
+    <div>
+        <router-view></router-view>
+    </div>
+</div>
+<script src="../../vue.2.0.js"></script>
+<script src="../../vue-router.js"></script>
+<script>
+    var Home = {
+        template: '<h3>我是主页</h3>'
+    };
+
+    var User = {
+        template: `
+            <div>
+                <h3>我是用户信息<h3>
+                <ul>
+                    <li><router-link to="/user/Strive/age/10">Strive</router-link></li>
+                    <li><router-link to="/user/blue/age/60">Blue</router-link></li>
+                    <li><router-link to="/user/eric/age/10">Eric</router-link></li>
+                </ul>
+                <div>
+                    <router-view></router-view>
+                </div>
+            </div>
+        `
+    };
+
+    var UserDetail = {
+        template: '<div>{{$route.params}}</div>'
+    }
+
+    const routes = [
+        {
+            path: '/home', component: Home
+        },
+        {
+            path: '/user',
+            component: User,
+            children: [
+                {path:':username/age/:age', component: UserDetail}
+            ]
+        },
+        {
+            path: '*', redirect: '/home'
+        }
+    ];
+
+    const router = new VueRouter({
+        routes
+    });
+
+    new Vue({
+        el: '#box',
+        router
+    })
+</script>
+
+</body>
+</html>

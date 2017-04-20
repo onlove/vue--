@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            width: 300px;
+            height: 300px;
+            background: red;
+        }
+        .fade-enter-active, .fade-leave-active{
+            transition: 1s all ease;
+        }
+        .fade-enter-active{
+            width: 300px;
+            height: 300px;
+            opacity: 1;
+        }
+        .fade-leave-active{
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+        .fade-enter, .fade-leave{
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+
+        /*
+            enter  初始状态
+            enter-active 当元素出来（显示）
+            leave
+            leave-active 当元素消失（隐藏）
+        */
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="点击显示隐藏" @click="show = !show"/>
+    <transition name="fade"
+                @before-enter="beforeEnter"
+                @enter="enter"
+                @after-enter="afterEnter"
+
+                @before-leave="beforeLeave"
+                @leave="leave"
+                @after-leave="afterLeave"
+    >
+         <p v-show="show"></p>
+    </transition>
+</div>
+<script src="../../vue.2.0.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            show: false
+        },
+        methods: {
+            beforeEnter(el) {
+                console.log("动画enter之前");
+                console.log(el)
+            },
+            enter(){
+                console.log('动画enter')
+            },
+            afterEnter(){
+                console.log('动画enter之后')
+            },
+            beforeLeave() {
+                console.log("动画leave之前")
+            },
+            leave() {
+                console.log("动画leave")
+            },
+            afterLeave() {
+                console.log("动画leave之后")
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

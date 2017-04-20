@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    父级 --> {{a}}
+    <child-com :msg="a"></child-com>
+</div>
+<template id="child">
+    <div>
+        <h3>我是子组件</h3>
+        <input type="button" value="点击" @click="change"/>
+        <strong>{{b}}</strong>
+    </div>
+</template>
+<script src="../../vue.2.0.js"></script>
+<script>
+
+    /*
+    * 父组件每次传个对象给子组件
+    * */
+    new Vue({
+        el: '#box',
+        data: {
+            a: "我是父组件的数据"
+        },
+        components: {
+            'child-com': {
+                props: ['msg'],
+                data() {
+                    return {
+                        b: ''
+                    }
+                },
+                template: '#child',
+                mounted(){
+                    this.b = this.msg
+                },
+                methods: {
+                    change() {
+                        this.b = "被更改了"
+                    }
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
